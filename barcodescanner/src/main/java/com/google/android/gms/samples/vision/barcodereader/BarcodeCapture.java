@@ -15,7 +15,6 @@
  */
 package com.google.android.gms.samples.vision.barcodereader;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -45,13 +44,10 @@ import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOver
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import io.reactivex.functions.Consumer;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeFragment;
 import xyz.belvi.mobilevisionbarcodescanner.R;
 
@@ -98,8 +94,7 @@ public final class BarcodeCapture extends BarcodeFragment {
 
         // read parameters from the intent used to launch the activity.
 
-
-        requestCameraPermission();
+        createCameraSource(isAutoFocus(), isShowFlash());
 
         gestureDetector = new GestureDetector(getContext(), new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(getContext(), new ScaleListener());
@@ -115,28 +110,6 @@ public final class BarcodeCapture extends BarcodeFragment {
             }
         });
         return rootView;
-    }
-
-
-    /**
-     * Handles the requesting of the camera permission.  This includes
-     * showing a "Snackbar" message of why the permission is needed then
-     * sending the request.
-     */
-    private void requestCameraPermission() {
-        RxPermissions rxPermissions = new RxPermissions(getActivity());
-        rxPermissions.request(Manifest.permission.CAMERA)
-                .subscribe(new Consumer<Boolean>() {
-
-                    @Override
-                    public void accept(Boolean granted) throws Exception {
-                        if (granted) {
-                            createCameraSource(isAutoFocus(), isShowFlash());
-                        } else {
-                            barcodeRetriever.onPermissionRequestDenied();
-                        }
-                    }
-                });
     }
 
 
@@ -238,6 +211,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         startCameraSource();
     }
 
+    @SuppressLint("WrongConstant")
     public void refresh(boolean forceRefresh) {
         if (getCustomBarcodeDetector().isOperational())
             getCustomBarcodeDetector().release();

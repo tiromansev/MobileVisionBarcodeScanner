@@ -27,7 +27,7 @@ import android.widget.CheckBox;
 
 import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture;
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
-import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.List;
