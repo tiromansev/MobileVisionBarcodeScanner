@@ -74,6 +74,7 @@ public final class BarcodeCapture extends BarcodeFragment {
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
+    private boolean useZoomListener = true;
 
 
     /**
@@ -125,6 +126,10 @@ public final class BarcodeCapture extends BarcodeFragment {
     @SuppressLint("InlinedApi")
     private void createCameraSource(boolean autoFocus, boolean useFlash) {
         createCameraSource(getCustomBarcodeDetector(), autoFocus, useFlash);
+    }
+
+    public void setUseZoomListener(boolean useZoomListener) {
+        this.useZoomListener = useZoomListener;
     }
 
     @SuppressLint("InlinedApi")
@@ -421,7 +426,9 @@ public final class BarcodeCapture extends BarcodeFragment {
          */
         @Override
         public void onScaleEnd(ScaleGestureDetector detector) {
-            mCameraSource.doZoom(detector.getScaleFactor());
+            if (useZoomListener) {
+                mCameraSource.doZoom(detector.getScaleFactor());
+            }
         }
     }
 
