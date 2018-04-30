@@ -445,4 +445,8 @@ public final class BarcodeCapture extends BarcodeFragment {
     public Camera retrieveCamera() {
         return mCameraSource.getCamera();
     }
+
+    public int doZoom(float scale) {
+        return mCameraSource.doZoom(scale);
+    }
 }
