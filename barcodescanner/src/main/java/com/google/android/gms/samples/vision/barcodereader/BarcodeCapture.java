@@ -143,6 +143,7 @@ public final class BarcodeCapture extends BarcodeFragment {
         BarcodeTrackerFactory barcodeFactory = new BarcodeTrackerFactory(mGraphicOverlay) {
             @Override
             void onCodeDetected(Barcode barcode) {
+                Log.d("scan_delay", "Barcode detected: " + barcode.displayValue);
                 if (!isTouchAsCallback() && !supportMultipleScan()) {
                     if (!isPause())
                         barcodeRetriever.onRetrieved(barcode);
