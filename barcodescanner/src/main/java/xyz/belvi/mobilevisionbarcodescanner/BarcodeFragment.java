@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
+
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
 import com.google.android.gms.vision.Detector;

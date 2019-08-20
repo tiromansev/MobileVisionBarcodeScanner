@@ -17,13 +17,14 @@
 package xyz.belvi.mobilevisionbarcodesample;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.CheckBox;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture;
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic;
